@@ -1,0 +1,54 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title">Consultar Titulos</h4>
+                        <p class="card-category">Indique os parametros para buscar titulos importados.</p>
+                    </div>
+                    <div class="card-body">
+                        <form>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <mat-form-field class="example-full-width">
+                                        <input name="dataInicial" [(ngModel)]="titulo.dataInicial" required matInput placeholder="Data Inicial" type="date">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-4">
+                                    <mat-form-field class="example-full-width">
+                                        <input name="dataFinal" [(ngModel)]="titulo.dataFinal" required matInput placeholder="Data Final" type="date">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-4">
+                                    <mat-form-field class="example-full-width">
+                                        <input name="codEmpresa" [(ngModel)]="titulo.codEmpresa" required matInput placeholder="Código da Empresa" type="number">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label> A partir dos dados inseridos, será realizada uma consulta de titulos
+                    importados diretamente no banco de dados.
+                    da Redesoft.</label>
+                                </div>
+                            </div>
+                            <button mat-raised-button type="submit" (click)="consultar()" class="btn btn-danger pull-right">Consultar
+                Titulos</button>
+                            <div class="clearfix"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" >
+            <div class="col-md-12">
+                <div class="mat-elevation-z8" class="card-header card-header-danger">
+                    <table  [dtTrigger]="dtTrigger" datatable [dtOptions]="dtOptions" class="card-header card-header-danger" style="width: 100%">
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

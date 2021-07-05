@@ -1,0 +1,159 @@
+<div class="main-content">
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title">Consultar Titulos</h4>
+                        <p class="card-category">Indique os parametros para buscar titulos importados.</p>
+                    </div>
+                    <div class="card-body">
+                        <form>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <mat-form-field class="example-full-width">
+                                        <input name="dataInicial" [(ngModel)]="titulo.dataInicial" required matInput placeholder="Data Inicial" type="date">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-4">
+                                    <mat-form-field class="example-full-width">
+                                        <input name="dataFinal" [(ngModel)]="titulo.dataFinal" required matInput placeholder="Data Final" type="date">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-4">
+                                    <mat-form-field class="example-full-width">
+                                        <input name="codEmpresa" [(ngModel)]="titulo.codEmpresa" required matInput placeholder="Código da Empresa" type="number">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label> A partir dos dados inseridos, será realizada uma consulta de titulos
+                                        importados diretamente no banco de dados.
+                                        da Redesoft.</label>
+                                </div>
+                            </div>
+                            <button mat-raised-button type="submit" (click)="consultar()" class="btn btn-danger pull-right">Consultar Titulos</button>
+                            <div class="clearfix"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <mat-form-field>
+                    <mat-label>Filtro</mat-label>
+                    <input matInput (keyup)="applyFilter($event)"  placeholder="Ex. Aldeiotta" #input>
+                </mat-form-field>
+
+                <div class="mat-elevation-z8">
+                    <table mat-table [dataSource]="dataSource" matSort>
+
+                        <!-- ID Column -->
+                        <ng-container matColumnDef="id">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+                            <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+                        </ng-container>
+
+                        <!-- Nome Column -->
+                        <ng-container matColumnDef="codigo">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Código </th>
+                            <td mat-cell *matCellDef="let row"> {{row.codigo}} </td>
+                        </ng-container>
+
+                        <!-- CpfCnpj Column -->
+                        <ng-container matColumnDef="cpfCnpj">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Cpf/Cnpj </th>
+                            <td mat-cell *matCellDef="let row"> {{row.cpfCnpj}} </td>
+                        </ng-container>
+
+                        <!-- Data Alteração Column -->
+                        <ng-container matColumnDef="dataAlteracao">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Data de Alteração </th>
+                            <td mat-cell *matCellDef="let row"> {{row.dataAlteracao}} </td>
+                        </ng-container>
+
+                        <!-- Data Emissão Column -->
+                        <ng-container matColumnDef="dataEmissao">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Data de Emissão </th>
+                            <td mat-cell *matCellDef="let row"> {{row.dataEmissao}} </td>
+                        </ng-container>
+
+                        <!-- Data Importação Column -->
+                        <ng-container matColumnDef="dataImportacao">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Data de Importação </th>
+                            <td mat-cell *matCellDef="let row"> {{row.dataImportacao}} </td>
+                        </ng-container>
+
+                        <!-- Data Vencimento Column -->
+                        <ng-container matColumnDef="dataVencimento">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Data de Vencimento </th>
+                            <td mat-cell *matCellDef="let row"> {{row.dataVencimento}} </td>
+                        </ng-container>
+
+                        <!-- Historico Column -->
+                        <ng-container matColumnDef="historico">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Historico </th>
+                            <td mat-cell *matCellDef="let row"> {{row.historico}} </td>
+                        </ng-container>
+
+                        <!-- ID Empresa Column -->
+                        <ng-container matColumnDef="idEmpresa">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> ID Empresa </th>
+                            <td mat-cell *matCellDef="let row"> {{row.idEmpresa}} </td>
+                        </ng-container>
+
+                        <!-- ID Sistema Column -->
+                        <ng-container matColumnDef="idSistema">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> ID Sistema </th>
+                            <td mat-cell *matCellDef="let row"> {{row.idSistema}} </td>
+                        </ng-container>
+
+                        <!-- Natureza Column -->
+                        <ng-container matColumnDef="natureza">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> ID Natureza </th>
+                            <td mat-cell *matCellDef="let row"> {{row.natureza}} </td>
+                        </ng-container>
+
+                        <!-- Situação Column -->
+                        <ng-container matColumnDef="situacao">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Situacao </th>
+                            <td mat-cell *matCellDef="let row"> {{row.situacao}} </td>
+                        </ng-container>
+
+                        <!-- Tipo Column -->
+                        <ng-container matColumnDef="tipo">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Tipo </th>
+                            <td mat-cell *matCellDef="let row"> {{row.tipo}} </td>
+                        </ng-container>
+
+                        <!-- Valor Column -->
+                        <ng-container matColumnDef="valor">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Valor </th>
+                            <td mat-cell *matCellDef="let row"> {{row.valor}} </td>
+                        </ng-container>
+
+                        <!-- Valor Column -->
+                        <ng-container matColumnDef="centroCusto">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Centro Custo </th>
+                            <td mat-cell *matCellDef="let row"> {{row.centroCusto}} </td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+                        <!-- Row shown when there is no matching data. -->
+                        <tr class="mat-row" *matNoDataRow>
+                            <td class="mat-cell" colspan="4">Nenhum resultado encontrado</td>
+                        </tr>
+                    </table>
+
+                    <mat-paginator [pageSizeOptions]="[5, 10, 25, 50, 100]"></mat-paginator>
+                </div>
+
+            </div>
+        </div>
+    </div>

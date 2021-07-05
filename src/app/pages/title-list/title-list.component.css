@@ -1,0 +1,17 @@
+table {
+    width: 100%;
+}
+
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+}
+
+td,
+th {
+    width: 25%;
+}
+
+.mat-table-sticky {
+    border-left: 1px solid #e0e0e0;
+}
